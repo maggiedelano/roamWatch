@@ -1,8 +1,3 @@
-// add pull watch for block and put the block ref ID into a specified page based on page name
-
-// old video: https://www.loom.com/share/b1936a272e3b4031b3d5a167631cc1a0
-
-
 function addPullWatchAtBlock(blockID,pageName){
 
   var blockString = '[:block/uid "' + blockID + '"]'; 
@@ -13,7 +8,8 @@ function addPullWatchAtBlock(blockID,pageName){
   .data
   .addPullWatch("[{:block/_refs [:block/string :block/uid]}]", 
                 blockString, function a(before, after)
-                 {if(before === null){ // check for null / first reference
+                 {
+                  if(before === null){ // check for null / first reference
                    newBlockRef = after[":block/_refs"][0][":block/uid"];
                  }
                   else { 
@@ -60,8 +56,11 @@ function getPageIDFromPageName(pageName){
     [?p :node/title ?pageName]
     [?p :block/uid ?pageID]
 ]`, pageName);
+  
+  if (pageID.length > 0)
+    return pageID[0][0];
 
-  return pageID[0][0];
+  else return [];
 }
 
 
