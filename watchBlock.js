@@ -21,15 +21,17 @@ function addPullWatchAtBlock(blockID,pageName){
                    afterUIDs = after[":block/_refs"].map(x => x[":block/uid"]);
                    newBlockRef = afterUIDs.filter(x => !beforeUIDs.includes(x));
                   }
-  
-                  window
-              .roamAlphaAPI
-              .createBlock(
+
+            if (newBlockRef.length > 0){
+              window
+            .roamAlphaAPI
+            .createBlock(
             {"location": 
             {"parent-uid": pageID, 
             "order": 0}, 
             "block": 
             {"string": '((' + newBlockRef + '))'}})
+            }           
 });
 
   return result;
