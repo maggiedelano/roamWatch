@@ -7,11 +7,7 @@ function addPullWatchAtBlock(blockID,pageName){
 
   var blockString = '[:block/uid "' + blockID + '"]'; 
 
-  console.log(blockString);
-
   pageID = getPageIDFromPageName(pageName);
-
-  console.log(pageID);
 
   var result = roamAlphaAPI
   .data
@@ -36,9 +32,22 @@ function addPullWatchAtBlock(blockID,pageName){
             {"string": '((' + newBlockRef + '))'}})
 });
 
-  console.log(result);
+  return result;
 }
 
+function removePullWatchAtBlock(blockID,pageName){
+
+  var blockString = '[:block/uid "' + blockID + '"]'; 
+
+  pageID = getPageIDFromPageName(pageName);
+
+  var result = roamAlphaAPI
+  .data
+  .removePullWatch("[{:block/_refs [:block/string :block/uid]}]", 
+                blockString);
+
+  return result;
+}
 
 
 function getPageIDFromPageName(pageName){
