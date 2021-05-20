@@ -8,6 +8,7 @@ function findAllBlocksFromUser(displayName){
   			:where
     		[?blocks :create/user ?userID]
     		[?blocks :block/uid ?blockUIDs]
+    		(not [?blocks :node/title ?title])
 		]`, userID);
 
 	return blocks.map((data, index) => {return data[0]});
