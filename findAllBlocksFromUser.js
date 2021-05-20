@@ -22,5 +22,6 @@ function getUserIDFromDisplayName(displayName){
     		[?userID :user/display-name ?displayName]]
 		`,displayName)
 
-	return userID[0][0];
+	if (userID.length != 0)
+		return userID[0][0];
 }
