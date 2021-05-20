@@ -24,4 +24,6 @@ function getUserIDFromDisplayName(displayName){
 
 	if (userID.length != 0)
 		return userID[0][0];
+	else
+		console.log("No user found with name: " + displayName);
 }
